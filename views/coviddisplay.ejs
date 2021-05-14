@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css2?family=Pangolin&display=swap" rel="stylesheet">
+    <link rel="stylesheet" type=text/css href="css/bbmp.css">
+    <title>Bed Allotment Detail</title>
+</head>
+<body>
+    <div class="container">
+        
+        <div class="row">
+            <div class="col-md-2 col-sm-3 col-5 ann">
+
+                <p style="color:#fff;margin-left:50px;">Announcements  >><i class="fa fa-angle-double-right" aria-hidden="true"></i></p>
+                
+            </div>
+
+            <div class="col-md-10 col-sm-9 col-7 ann1">
+                <marquee behavior="scroll" direction="left" onmousedown="this.setAttribute('scrollamount', 3, 0);" onmouseup="this.setAttribute('scrollamount', 10, 0);" scrollamount="10">
+                    <a href="" style="color:#fff;padding-right:20px">Live Covid Bed Status</a>
+                </marquee>
+            </div>
+        </div>      
+    </div>
+    <div class="container-fluid head-fluid">
+        <div class="container-fluid top1-fluid">
+            <div class="row">
+                <p><a href="#">Home</a>
+                <select name="dropDown" id="dropDown">
+                    <option value="#"not-selected>About Us</option>
+                    <option value="#about">History</a></option>
+                    <option value="#structure"><a href="structure.html"></a> Organizational Structure</option>
+                </select>    
+                <a href="#">Services</a>
+                <a href="#">FAQ'S</a>
+                <a href="#">Contact Us</a></p>
+
+            </div>
+        </div>
+        <div class="row menu-head">
+            <div class="col-md-3 logo">
+                <a href="#">
+                    <img src="http://localhost:3000/images/bbmplogo.png" alt="">
+                </a>
+        </div>
+        <% if(currentUser){ %>
+        <ul>
+            <li style="list-style-type:none;margin-right:10px;"><a href="#" style="text-decoration:none;">Signed in As <%= currentUser.username %></a></li>
+            <li style="float:right;list-style-type:none;"><a href="/logout" style="text-decoration:none;">Logout</a></li>
+        </ul>
+        <% } else { %>
+            <li style="float:right;list-style-type:none;"><a href="/login" style="text-decoration:none;">Login</a></li>
+        
+        <% } %>
+        <div class="container">
+            <table border="2">
+                <tr>
+                    <th>BU Number</th>
+                    <th>Patient Name</th>
+                    <th>Age</th>
+                    <th>Address</th>
+                    <th>Pincode</th>
+                    <th>Ward number</th>
+                    <th>Symptoms</th>
+                    <th>Since how many days</th>
+                    <th>SPO2 level</th>
+                    <th>Patient on Oxygen Cylinder:</th>
+                    <th>Searching hospitals since</th>
+                    <th>Covid test done</th>
+                    <th>Covid test results</th>
+                    <th>Phone Number</th>
+                    <th>Allotted Hospital</th>
+                    <th>Bed allotted by</th>
+                    <th>Type of bed allotted</th>
+                </tr>
+        
+            <% patients.forEach(function(patient){ %>
+                        
+                        <tr>
+                            <td><%= patient.bu %></td>
+                            <td><%= patient.name %></td>
+                            <td><%= patient.age %></td>
+                            <td><%= patient.address %></td>
+                            <td><%= patient.pin %></td>
+                            <td><%= patient.ward %></td>
+                            <td><%= patient.symptoms %></td>
+                            <td><%= patient.days %></td>
+                            <td><%= patient.oxy %></td>
+                            <td><%= patient.oxygen %></td>
+                            <td><%= patient.search %></td>
+                            <td><%= patient.test %></td>
+                            <td><%= patient.result %></td>
+                            <td><%= patient.phone %></td>
+                            <td><%= patient.hos %></td>
+                            <td><%= patient.names %></td>
+                            <td><%= patient.bed %></td>
+                            
+                        </tr>
+                    
+            <% }); %>
+        </table>
+
+    </div>
+</body>
+</html>

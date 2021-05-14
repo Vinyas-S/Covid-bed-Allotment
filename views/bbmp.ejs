@@ -1,0 +1,404 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Pangolin&display=swap" rel="stylesheet">
+    <link rel="stylesheet" type=text/css href="css/bbmp.css">
+    <title>BBMP</title>
+    <style>
+        .accordion {
+          background-color: #eee;
+          color: #444;
+          cursor: pointer;
+          padding: 18px;
+          width: 100%;
+          border: none;
+          text-align: left;
+          outline: none;
+          font-size: 15px;
+          transition: 0.4s;
+        }
+        
+        .active, .accordion:hover {
+          background-color: #ccc; 
+        }
+        
+        .panel {
+          padding: 0 18px;
+          display:contents;
+          background-color: white;
+          color: black;
+          overflow: hidden;
+        }
+        .panel p{
+            color:black;
+        }
+        </style>
+</head>
+<body>
+    
+    <div class="container">
+        
+        <div class="row">
+            <div class="col-md-2 col-sm-3 col-5 ann">
+
+                <p style="color:#fff;margin-left:50px;">Announcements  >><i class="fa fa-angle-double-right" aria-hidden="true"></i></p>
+                
+            </div>
+
+            <div class="col-md-10 col-sm-9 col-7 ann1">
+                <marquee behavior="scroll" direction="left" onmousedown="this.setAttribute('scrollamount', 3, 0);" onmouseup="this.setAttribute('scrollamount', 10, 0);" scrollamount="10">
+                    <a href="/coviddisplay" style="color:#fff;padding-right:20px">Live Covid Bed Status</a>
+                </marquee>
+            </div>
+        </div>      
+    </div>
+    <div class="container-fluid head-fluid">
+        <div class="container-fluid top1-fluid">
+            <div class="row">
+                <p><a href="/">Home</a>
+                <select name="dropDown" id="dropDown">
+                    <option value="#"not-selected><a href="#about">About Us</a> </option>
+                    <option value="#"><a href="#about">History</a></option>
+                    <option value="#"><a href="#structure"> Organizational Structure</a></option>
+                </select>    
+                <a href="#services">Services</a>
+                <a href="#faq">FAQ'S</a>
+                <a href="#contact">Contact Us</a></p>
+
+            </div>
+        </div>
+        <div class="empbutton">
+            <a href="/login" style="background-color: red;float:right;margin-top:50px;">Employee Zone</a> 
+        </div>
+        <div class="row menu-head">
+            <div class="col-md-3 logo">
+                <a href="#">
+                    <img src="http://localhost:3000/images/bbmplogo.png" alt="">
+                </a>
+        </div>
+        <div class="col-md-9 topnav">
+            <div class="row col-search stic-hide">
+                <div class="col-sm-6">
+                    <form class="card card-sm" method="get" id=searchform" onsubmit=" return myFunction()" name="Form" action="#"></form>
+                    <div class="row no-glutters align-items-center">
+                        <div class="col-auto">
+                            <i class="fa fa-search h4 text-body">
+
+                            </i>
+                            </div>
+                            <div class="col">
+                                <input class="form-control form-control-lg form-control-borderless" value name="s" id="s" type="search" placeholder="Search topics or keywords" required>
+
+                            </div>
+                            </div>
+                            <div class="col-sm-4 scl-icon">
+                                <p>
+                                    <a href="https://www.facebook.com/bbmp.comm1/" target="_blank"></a>
+                                    <a href="https://twitter.com/bbmpcomm/" target="_blank"></a>
+                                    <a href="https://api.whatsapp.com/send?phone=+919480685700" target="_blank"></a>
+                                    <a href="https://aqicn.org/forecast/bangalore/" target="_blank"></a>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="wrap">
+        <div id="arrow-left" class="arrow">
+
+        </div>
+        <div id="slider">
+            <div class="slide slide1">
+               
+            </div>
+            <div class="slide slide2">
+                
+            </div>
+            <div class="slide slide3">
+               
+            </div>
+        </div>
+        <div id="arrow-right" class="arrow">
+            
+        </div>
+    </div>
+
+    <script>
+        let sliderImages = document.querySelectorAll('.slide'),
+            arrowRight = document.querySelector('#arrow-right'),
+            arrowLeft = document.querySelector('#arrow-left'),
+            current=0;
+
+        function reset(){
+            for(let i=0; i<sliderImages.length;i++){
+                sliderImages[i].style.display = 'none';
+            }
+        }
+
+        function startSlide(){
+            reset();
+            sliderImages[0].style.display='block';
+        }
+
+        function slideLeft(){
+            reset(); 
+            sliderImages[current -1].style.display = 'block';
+            current--;
+        }
+
+        function slideRight(){
+            reset();
+            sliderImages[current + 1].style.display='block';
+            current++;
+        }
+        
+        arrowLeft.addEventListener('click',function(){
+            if(current === 0){
+                current = sliderImages.length;  
+            }
+            slideLeft();
+        });
+
+        arrowRight.addEventListener('click',function(){
+            if(current === sliderImages.length - 1){
+                current = -1;
+            }
+            slideRight();
+        });
+
+        startSlide();
+    </script>
+
+    </div>
+
+    <h1 id="aboutheading">History of BBMP</h1>
+    <p id="about">The Bruhat Bengaluru Mahanagara Palike (BBMP), is the administrative body responsible for civic amenities and some infrastructural assets of the Greater Bengaluru metropolitan area. It is the fourth largest Municipal Corporation in India being responsible for a population of 6.8 million in an area of 741 km2. Its boundaries have expanded more than 10 times over the last six decades.
+        
+        Its roles and responsibilities include the "orderly development of the city" — zoning and building regulations, health, hygiene, licensing, trade and education, as well as quality of life issues such as public open space, water bodies, parks and greenery.
+    </p>
+
+    <div id="imgs">
+        <img src="http://localhost:3000/images/WhatsApp Image 2020-04-03 at 12.14.54 PM.jpeg" alt="">
+        <img src="http://localhost:3000/images/WhatsApp Image 2020-04-03 at 12.14.55 PM.jpeg" alt="">
+        <img src="http://localhost:3000/images/WhatsApp Image 2020-04-03 at 12.14.56 PM.jpeg" alt="">
+    </div>
+
+    <div id="structure" class="organizationalStructure">
+        <h1>Organizational Structure</h1>
+        <img src="http://localhost:3000/images/organization-setup_new.png" alt="">
+    </div>
+
+    <div id="services" class="services">
+        <h1>Services Offered</h1>
+        <div class="box">
+            <a href="/coviddisplay">
+                <img src="http://localhost:3000/images/covid19.png" alt="">
+                <p>Covid</p>
+            </a>
+        </div>
+    </div>
+    <div id="faq" class="faq">
+        <h1>General FAQ</h1>
+            <button class="accordion">Who is a COVID-19 suspect?</button>
+            <div class="panel" id="panel">
+                <p>A COVID-19 suspect is: a. A patient with acute respiratory illness (fever and at least one sign/symptom of respiratory disease, e.g., cough, shortness of breath), AND a history of travel to or residence in a location reporting community transmission of COVID-19 disease during the 14 days prior to symptom onset; OR b. A patient with any acute respiratory illness AND having been in contact with a confirmed or probable COVID-19 case in the last 14 days prior to symptom onset; OR c. A patient with severe acute respiratory illness (fever and at least one sign/symptom of respiratory disease, e.g., cough, shortness of breath; AND requiring hospitalization) AND in the absence of an alternative diagnosis that fully explains the clinical presentation.</p>
+            </div>
+
+            <button class="accordion">Who is a contact?</button>
+            <div class="panel">
+                <p>A contact is anybody who has been within six feet of an infected person for at least 15 minutes (when neither are wearing masks or any other personal protective equipment). The time of association is significant here. For a symptomatic COVID positive case: Contact is one, who has been close to a COVID positive individual any time starting from 2 days before onset of the illness until the patient’s isolation OR For asymptomatic patients: Contact is one who has had a close association starting 2 days prior to specimen collection until the patient testing positive and shifting to a home or institutional quarantine. The Ministry of Health and Family Welfare (MoHFW) has defined a Coronavirus contact as a healthy person who has been close enough to a COVID positive person or a contaminated environment for an exposure, and therefore at a higher risk of contracting the disease. The ministry has further explained a contact as: 1. Someone who has shared household with a COVID positive person 2. Anybody who had a direct physical contact with a confirmed positive 3. Those who have been in direct physical contact with a patient’s infectious secretions either without recommended personal protective equipment (PPE) or with a possible breach of PPE 4. People who have been in a closed environment or had face-to-face contact with an infected person at a distance of within or less than a metre including air travel</p>
+            </div>
+
+            <button class="accordion">Who is a confirmed COVID-19 positive?</button>
+            <div class="panel">
+                <p>A person with laboratory confirmation of COVID-19 infection, irrespective of clinical signs and symptoms is categorised as confirmed case of the disease.</p>
+            </div>
+            <button class="accordion">What are the common, less common, moderate, severe and emergency symptoms of COVID?</button>
+            <div class="panel">
+                <p>Most common symptoms of COVID-19 are:
+                    Fever
+                    Dry Cough
+                    Breathing difficulties
+                    Tiredness
+                    And less common symptoms of corona disease are:
+                    Aches and Pains
+                    Sore Throat
+                    Diarrhoea
+                    Conjunctivitis
+                    Headache
+                    Loss of Taste or Smell
+                    A Rash on Skin, Or Discolouration of Fingers or Toes
+                    Some moderate to severe COVID-19 symptoms are
+                    Mild to severe pneumonia, mild / moderate / severe acute respiratory distress syndrome (ARDS)
+                    Sepsis, septic shock
+                    Acute Respiratory Illness (ARI)
+                    Influenza-like-illnesses (ILI) -according to the WHO, the symptoms are an acute respiratory infection with fever of ≥ 38 C° and cough that has had an onset within the last 10 days.
+                    Severe Acute Respiratory Illness (SARI) – According to the WHO, the symptoms include an acute respiratory infection with a history of fever or measured fever of ≥ 38 C°, cough, onset within the last 10 days, and hospitalization requirement.
+                    Emergency symptoms of COVID-19 are:
+                    Trouble breathing
+                    Constant pain or pressure in your chest
+                    Bluish lips or face
+                    Sudden confusion</p>
+            </div>
+            <button class="accordion">What is SPO2? Why is it important to check in COVID patients?</button>
+            <div class="panel">
+                <p>A dip in the oxygen saturation in your blood is noticeable when you start feeling breathlessness. In cases like Coronavirus patients, it’s difficult to realize that you are getting hypoxia. Hence SPO2, or oxygen saturation in your blood, must be monitored in COVID patients.</p>
+            </div>
+            <button class="accordion">As per Karnataka Government guidelines, for which cases will individual testing be conducted by labs?</button>
+            <div class="panel">
+                <p>As per the Government of Karnataka circular for testing labs dated July 10, 2020, samples collected from symptomatic patients or those identified as primary contacts of a confirmed COVID positive patient will fall under “Category A” and therefore samples of such persons will be sent for individual testing.</p>
+            </div>
+            <button class="accordion">When will labs conduct pooled sample testing in Karnataka?</button>
+            <div class="panel">
+                <p>As per the Government of Karnataka circular for testing labs dated July 10, 2020, samples will received from asymptomatic people and international travellers will fall under “Category B” and therefore samples of such persons will be tested as a pooled sample. Maximum of 5 samples of category B persons can be tested via pooled method.</p>
+            </div>
+            <button class="accordion">How many types of COVID tests are there?</button>
+            <div class="panel">
+                <p>COVID tests can be broadly categorised as viral or serological (serum) tests. Viral tests detect presence of the SARS-CoV-2 virus whereas serological test means looking for antibodies in blood / serum/ other body fluids. Serological tests seek evidence of body’s immune reaction to the viral antigen.</p>
+            </div>
+            <button class="accordion">What are COVID diagnostic tests?</button>
+            <div class="panel">
+                <p>These tests detect the presence of viral antigen in the body. Antigen based Rapid Diagnostic Tests or RDTs deliver fastest results whereas molecular tests like the RT-PCR take a little longer to confirm presence of the viral genome in our body but are more accurate with results.</p>
+            </div>
+
+    </div>
+    <div class="row">
+        <div class="allmen">
+            <div class="firstmen">
+                <div class="yeddi">
+                    <img src="http://localhost:3000/images/cm2.jpeg" alt="">
+                </div>
+                <div class="firsttext">
+                    <h2>Shri. B.S Yediyurappa</h2>
+                    <strong class="dep">Chief Minister of Karnataka</strong>
+                    <ul class="team-social">
+                        <li><em>Connect:</em></li>
+                        <li><a href="https://twitter.com/CMofKarnataka?s=09" target="_blank"><i class="fab fa-twitter" style="color:#00acee;"></i></a></li>
+                        <li><a href="https://www.facebook.com/CMofKarnataka/" target="_blank"><i class="fab fa-facebook-f" style="color: #3b5998;"></i></a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="firstmen">
+                <div class="Rakesh">
+                    <img src="http://localhost:3000/images/Rakesh-sir.jpeg" alt="">
+                </div>
+                <div class="firsttext">
+                    <h2>Shri. Rakesh Singh</h2>
+                    <strong class="dep">Administrator</strong>
+                    <ul class="team-social">
+                        <li><em>Connect:</em></li>
+                        <li><a href="https://twitter.com/CMofKarnataka?s=09" target="_blank"><i class="fab fa-twitter" style="color:#00acee;"></i></a></li>
+                        <li><a href="https://www.facebook.com/CMofKarnataka/" target="_blank"><i class="fab fa-facebook-f" style="color: #3b5998;"></i></a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="firstmen">
+                <div class="yeddi">
+                    <img src="http://localhost:3000/images/administratorimag.jpeg" alt="">
+                </div>
+                <div class="firsttext">
+                    <h2>Shri Gaurav Gupta</h2>
+                    <strong class="dep">Chief Comissioner</strong>
+                    <ul class="team-social">
+                        <li><em>Connect:</em></li>
+                        <li><a href="https://twitter.com/CMofKarnataka?s=09" target="_blank"><i class="fab fa-twitter" style="color:#00acee;"></i></a></li>
+                        <li><a href="https://www.facebook.com/CMofKarnataka/" target="_blank"><i class="fab fa-facebook-f" style="color: #3b5998;"></i></a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="news">
+        <h1>Latest News</h1>
+    </div>
+    <div id="contact">
+        <div class="container">
+            <div class="row"> 
+            <!--Footer Widget Start-->
+            <div class="col">
+                <div class="textwidget"> <img src="images/" alt="">
+                <address>
+                <ul>
+                    <li> <i class="fas fa-university"></i><span> <strong>Head Office Address:</strong> Hudson Circle, Bengaluru, Karnataka 560002, India</span> </li><br>
+                    <li> <i class="fas fa-envelope"></i> <strong>Email:</strong> comm@bbmp.gov.in<br><!--contactusbbmp@gmail.com<br>-->
+                    </li>
+                    <li> <i class="fas fa-phone"></i> <strong>Call us:</strong> 080-22660000 </li>
+                    <br>
+                    <li style="margin-left: -27px;">GSTIN No.: 29AAALB1608F1ZK</li>
+                </ul>
+                </address>
+                </div>
+            </div>
+            <div class="col-md-3 col-sm-6">
+                <div class="footer-widget">
+                <h3>Other Government Departments</h3>
+                <ul>
+                    <li><a href="http://www.uddkar.gov.in/" target="_blank"><i class="fas fa-star"></i> Urban Development</a></li><br>
+                    <li><a href="http://karnatakajudiciary.kar.nic.in/" target="_blank"><i class="fas fa-star"></i> Karnataka High Court</a></li><br>
+                    <li><a href="https://karunadu.karnataka.gov.in/ceg/Pages/home.aspx" target="_blank"><i class="fas fa-star"></i> Center For E-Goverance</a></li><br>
+                    <li><a href="https://www.bdabangalore.org/" target="_blank"><i class="fas fa-star"></i> Bengaluru Development Authority</a></li><br>
+                    <li><a href="http://bmrda.karnataka.gov.in/Pages/home.aspx" target="_blank"><i class="fas fa-star"></i> B.M.R.D.A</a></li><br>
+                    <li><a href="https://karunadu.karnataka.gov.in/hfw/Pages/home.aspx" target="_blank"><i class="fas fa-star"></i> Health and Family Welfare</a></li><br>
+                    
+                </ul>
+                </div>
+            </div>
+            <!--Footer Widget End--> 
+            <!--Footer Widget Start-->
+            <div class="col-md-3 col-sm-6">
+                <div class="footer-widget">
+                <!-- <h6>Explore City Highlights</h6>-->
+                <ul>
+                    <br><br>
+                    <li style="margin-top:23px;"><a href="https://housing.karnataka.gov.in/english" target="_blank"><i class="fas fa-star"></i> Housing And Planning</a></li><br>
+                    <li><a href="https://itbtst.karnataka.gov.in/english" target="_blank"><i class="fas fa-star"></i> Department Of IT &amp; BT</a></li><br>
+                    <li><a href="http://kalakshetra.kannadasiri.co.in/" target="_blank"><i class="fas fa-star"></i> Kannada And Culture Department</a></li><br>
+                    
+                    <li><a href="https://www.karnatakatourism.org/" target="_blank"><i class="fas fa-star"></i> Tourism</a></li><br>
+                    <li><a href="http://www.schooleducation.kar.nic.in/index.html" target="_blank"><i class="fas fa-star"></i> Education Department</a></li><br>
+                </ul>
+                
+                </div>
+            </div>
+            </div>
+        </div>
+    </div>
+        <div class="copy">
+            <p class="copyr"> © <a href="#">Bruhat Bengaluru Mahanagara Palike 2020 | </a>
+                <span class="li"><a href="CopyrightPolicy.html"> Copyright Policy</a></span>
+                <span class="li">|</span>
+                <span class="li"><a href="PrivacyPolicy.html"> Privacy Policy</a></span>
+                <span class="li">|</span>
+                <span class="li"><a href="HyperlinkPolicy.html">Hyperlink Policy</a></span>
+            </p>
+        </div>
+
+
+    <script>
+        var acc = document.getElementsByClassName("accordion");
+        var i;
+        
+        for (i = 0; i < acc.length; i++) {
+          acc[i].addEventListener("click", function() {
+            this.classList.toggle("active");
+            var panel = this.nextElementSibling;
+            $("#panel").height(120);
+            
+            if (panel.style.maxHeight) {
+              panel.style.maxHeight = null;
+            } else {
+              panel.style.maxHeight = panel.scrollHeight + "10px";
+            }
+          });
+        }
+        </script>
+</body>
+</html>

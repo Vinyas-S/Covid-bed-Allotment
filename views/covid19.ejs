@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Covid19 Employee Zone</title>
+    <style>
+        .container{
+            margin:100px;
+        }
+        .form-group{
+            padding:20px;
+        }
+        input{
+            width: 300px;
+        }
+        header{
+            margin:30px;
+            padding:20px;
+            background-color:#000;
+            color:white;
+            text-align:center;
+        }
+         
+         body{
+             background-color:orange;
+         }
+    </style>
+</head>
+<body>
+    <header>
+        <nav>
+            <h1>Patient Bed Allotment</h1>
+            <ul>
+                <% if(currentUser){ %>
+                    <ul>
+                        <li style="float:right;list-style-type:none;margin-top:-20px;"><a href="#" style="color:white;text-decoration:none;">Signed in As <%= currentUser.username %></a></li>
+                        <li style="float:right;list-style-type:none;"><a href="/logout" style="color:white;text-decoration:none;">Logout</a></li>
+                    </ul>
+                <% } else { %>
+                    <li style="float:right;list-style-type:none;"><a href="/login" style="color:white;text-decoration:none;">Login</a></li>
+                
+                <% } %>
+            </ul>
+        </nav>
+    </header>
+
+    <div class="container">
+        <form action="/coviddisplay" method="POST">
+            <div class="form-group">
+                <input class="form-control" type="text" name="BU" placeholder="BU number" required><br>
+            </div>
+            <div class="form-group">
+                <input class="form-control" type="text" name="name" placeholder="Patient's name" required><br>
+            </div>
+            <div class="form-group">
+                <input class="form-control" type="number" name="age" placeholder="Age" required><br>
+            </div>
+            <div class="form-group">
+                <input class="form-control" type="text" name="address" placeholder="Address" required><br>
+            </div>
+            <div class="form-group">
+                <input class="form-control" type="number" name="pin" placeholder="PINCODE"required><br>
+            </div>
+            <div class="form-group">
+                <input class="form-control" type="text" name="ward" placeholder="Ward number" required><br>
+            </div>
+            <label for="symptoms">Symptoms:</label>
+
+            <div class="form-group">
+                <textarea class="form-control" name="symptoms" id="" cols=30" rows="10" required></textarea><br>
+            </div>
+            <div class="form-group">
+                <input class="form-control" type="number" name="days" placeholder="Since how many days" required>
+            </div>
+            <div class="form-group">
+                <input class="form-control" type="number" name="oxy" placeholder="SPO2 level" required>
+            </div>
+            <div class="form-group">
+                <label for="oxygen">Is patient on Oxygen Cylinder:</label>
+                <select class="form-control" id="oxy" name="oxygen" required>
+                    <option value="yes">Yes</option>
+                    <option value="no">No</option>
+                  </select>
+            </div>
+            Searching hospitals since:
+            <div class="form-group">
+                <input class="form-control" type="date" name="search" placeholder="Searching hospitals since" required>
+            </div>       
+            <div class="form-group">
+                <label for="test">Covid test done?:</label>
+                <select class="form-control" id="test" name="test" required>
+                    <option value="yes">Yes</option>
+                    <option value="no">No</option>
+                  </select>
+            </div>
+            <div class="form-group">
+                <label for="result">Covid test results:</label>
+                <select class="form-control" id="result" name="result" required>
+                    <option value="positive">Positive</option>
+                    <option value="negative">Negative</option>
+                  </select>
+            </div>
+            <div class="form-group">
+                <label for="phone">Enter a phone number:</label><br><br>
+                <input class="form-control" type="tel" id="phone" name="phone" placeholder="" pattern="[0-9]{10}" required><br><br>
+            </div>
+            <div class="form-group">
+                <label for="hos">Allotted hospital:</label>
+                <select class="form-control" id="hos" name="hos" required>
+                    <optgroup name="gov" label="Government hospitals Covid beds"></optgroup>
+                            <option value="ESI Hospital Indiranagar">ESI Hospital Indiranagar</option>
+                            <option value="ESIMC PGIMSR MODEL HOSPITAL"> ESIMC PGIMSR MODEL HOSPITAL</option>
+                            <option value="General Hospital Anekal"> General Hospital Anekal</option>
+                            <option value=" General Hospital Jayanagar"> General Hospital Jayanagar</option>
+                            <option value="General Hospital Kr Puram"> General Hospital Kr Puram</option>
+                            <option value="General Hospital Yelahanka"> General Hospital Yelahanka</option>
+                            <option value="K C General Hospital"> K C General Hospital</option>
+                            <option value="Sir C V Raman General Hopsital Indiranaga">Sir C V Raman General Hopsital Indiranagar</option> 
+                            <option value="Taluk Hospital Devanahalli"> Taluk Hospital Devanahalli </option>
+                            <option value="Taluk Hospital Hosakote"> Taluk Hospital Hosakote</option>
+                            <option value="Taluk Hospital Nelamangala">  Taluk Hospital Nelamangala</option>
+                            <option value="Taluka Heath Center Doddaballapura"> Taluka Heath Center Doddaballapura</option>
+                        
+                     <optgroup name="govt" label="Government Medical Colleges (Covid Beds)"></optgroup>
+                           <option value="Bowring And Lady Curzon Hospitals">Bowring And Lady Curzon Hospitals</option> 
+                           <option value="CHARAKA SUPER SPECIALITY HOSPITAL">CHARAKA SUPER SPECIALITY HOSPITAL</option> 
+                           <option value="Govt HSIS Gosha Hospital">Govt HSIS Gosha Hospital</option> 
+                     <optgroup name="priv" label="Private Hospitals (Government Quota Covid Beds)"></optgroup>
+                           <option value="A V MULTISPECIALITY HOSPITAL">A V MULTISPECIALITY HOSPITAL</option> 
+                           <option value="Agadi Hospital">  Agadi Hospital</option>    
+                           <option value="Ananya Hospital Pvt Ltd Rajajinagar">  Ananya Hospital Pvt Ltd Rajajinagar</option>
+                           <option value="APOLLO HOSPITALS ENTERPRISE LIMITED ">  APOLLO HOSPITALS ENTERPRISE LIMITED       </option>
+                           <option value="APOLLO HOSPITALS ENTERPRISES LIMITED SHESHADRIPUR">APOLLO HOSPITALS ENTERPRISES LIMITED SHESHADRIPUR</option>
+                           <option value="Apoorva Hospitals And Diagnostic Centre"> Apoorva Hospitals And Diagnostic Centre        </option>
+                           <option value=" Artyem Hospital   ">  Artyem Hospital       </option>
+                           <option value="Aster CMI Hospital">  Aster CMI Hospital     </option>
+                            <option value=" Apollo Specialty Hospital Pvt Ltd">  Apollo Specialty Hospital Pvt Ltd</option>           
+                           <option value=" Apoorva Hospitals And Diagnostic Centre">   Apoorva Hospitals And Diagnostic Centre   </option>   
+                           <option value="  ASTRA SUPER SPECIALITY HOSPITAL   ">  ASTRA SUPER SPECIALITY HOSPITAL       </option>
+                           <option value="  Atreum Hospitals Pvt Ltd  ">  Atreum Hospitals Pvt Ltd       </option>
+                           <option value=" Aveksha Hospital     ">  Aveksha Hospital        </option>
+                           <option value="BANGALORE BAPTIST HOSPITAL  ">  BANGALORE BAPTIST HOSPITAL       </option>
+                           <option value="BANGALORE INSTITUTE OF GASTROENTEROLOGY ">   BANGALORE INSTITUTE OF GASTROENTEROLOGY  </option>     
+                           <option value=" BGS GLOBAL HOSPITAL   ">  BGS GLOBAL HOSPITAL       </option>
+                           <option value=" Bhagwan Mahaveer Jain Hospital  ">   Bhagwan Mahaveer Jain Hospital    </option>  
+                           <option value=" Bhagwan Mahaveer Jain Hospital Girinagar   ">   Bhagwan Mahaveer Jain Hospital Girinagar   </option>    
+                           <option value="    Bloosom Fertility Center And Hospital    ">    Bloosom Fertility Center And Hospital      </option>
+                           <option value="  BMS Hospital ">     BMS Hospital    </option>
+                            <option value="BROOKEFIELD HOSPITAL  ">   BROOKEFIELD HOSPITAL      </option>
+                            <option value="Chinmaya Mission Hospital     ">    Chinmaya Mission Hospital      </option>
+                            <option value=" CHORD ROAD HOSPITAL PVT LTD ">    CHORD ROAD HOSPITAL PVT LTD     </option>
+                            <option value="CHRIS SUPER SPECIALITY HOSPITAL">   CHRIS SUPER SPECIALITY HOSPITAL      </option>
+                            <option value="City Hospital">  City Hospital       </option>
+                            <option value="  Columbia Asia Hospital   ">   Columbia Asia Hospital      </option>
+                            <option value=" Columbia Asia Hospital Doddaballapura">   Columbia Asia Hospital Doddaballapura</option>      
+                            <option value=" Columbia Asia Hospital Hebbal   ">   Columbia Asia Hospital Hebbal     </option>
+                            <option value="  Columbia Asia Hospital White Field    ">   Columbia Asia Hospital White Field      </option>
+                            <option value="  Columbia Asia Referral Hospital Yeshwanthpur  ">   Columbia Asia Referral Hospital Yeshwanthpur     </option> 
+                            <option value=" Comfort Multi Speciality Hospital   ">   Comfort Multi Speciality Hospital      </option>
+                            <option value="    Cura Hospital ">    Cura Hospital      </option>
+                            <option value="  Cytecare Hospital Pvt Ltd ">    Cytecare Hospital Pvt Ltd   </option>   
+                            <option value="Dr GVG HEALTHCARE PVT LTD">    Dr GVG HEALTHCARE PVT LTD      </option>
+                            <option value=" Dr Malathi Manipal Hospital   ">     Dr Malathi Manipal Hospital     </option>
+                            <option value=" Excelcare Hospital A Unit Of Excelcare Health Alli">    Excelcare Hospital A Unit Of Excelcare Health Alli</option>     
+                            <option value=" Ehaa Hospital ">    Ehaa Hospital     </option>
+                            <option value=" Fortis Hospital Bannerghatta">     Fortis Hospital Bannerghatta </option>    
+                            <option value="FORTIS HOSPITAL Nagarabhavi ">     FORTIS HOSPITAL Nagarabhavi     </option>
+                            <option value="     Fortis Hospital Rajajinagar ">     Fortis Hospital Rajajinagar     </option>
+                            <option value="FORTIS HOSPITALS">    FORTIS HOSPITALS     </option>
+                            <option value="GANGA SPECIALTY HOSPITAL">    GANGA SPECIALTY HOSPITAL     </option>
+                            <option value=" Gayathri Hospitals Pvt Limited ">     Gayathri Hospitals Pvt Limited     </option>
+                            <option value="Gunasheela Surgical And Maternity Hospital">    Gunasheela Surgical And Maternity Hospital </option>  
+                            <option value="HBS Hospital Trust  ">     HBS Hospital Trust     </option>
+                            <option value="Healthcare Global Enterprises Ltd">    Healthcare Global Enterprises Ltd</option>     
+                            <option value="Jeevika Hospitals Pvt Ltd">    Jeevika Hospitals Pvt Ltd      </option>
+                            <option value="Jyotsnareddy Hospital Pvt Ltd ">    Jyotsnareddy Hospital Pvt Ltd     </option>
+                            <option value="Kanva Sri Hospital ">     Kanva Sri Hospital     </option>
+                            <option value="Koshys Hospital ">    Koshys Hospital     </option>
+                            <option value=" Leena Multispeciality Hospital">    Leena Multispeciality Hospital</option>     
+                            <option value=" London Care Hospital">     London Care Hospital     </option>
+                            <option value=" M S SHEKHAR HOSPITAL">      M S SHEKHAR HOSPITAL    </option>
+                            <option value="Madhusudana Healthcare Services Private Limited">      Madhusudana Healthcare Services Private Limited </option>   
+                            <option value="Mallige Medical Centre Private Limited">     Mallige Medical Centre Private Limited    </option>
+                            <option value="MALLYA HOSPITAL">     MALLYA HOSPITAL    </option>
+                            <option value="  Manipal Hospital   ">      Manipal Hospital    </option>
+                            <option value="Manipal Hospitals Whitefield">    Manipal Hospitals Whitefield   </option>  
+                            <option value="Manipal Northside Hospital A Unit Of MHEPL">    Manipal Northside Hospital A Unit Of MHEPL</option>     
+                            <option value="Manipal The Prevention Centre">    Manipal The Prevention Centre     </option>
+                            <option value="Mar Thoma Mission Hospital ">    Mar Thoma Mission Hospital     </option>
+                            <option value=" Marvel Multispeciality Hospital  ">     Marvel Multispeciality Hospital     </option>
+                            <option value=" Mediscope Chest And Super Speciality Hospital ">   Mediscope Chest And Super Speciality Hospital  </option>    
+                            <option value="MEDSTAR SPECIALITY HOSPITAL">   MEDSTAR SPECIALITY HOSPITAL      </option>
+                            <option value="Meenakshi Hospital">    Meenakshi Hospital      </option>
+                            <option value="  N R R Hospital  ">     N R R Hospital     </option>
+                            <option value="Nandana Health Care Services India Private Limited">   Nandana Health Care Services India Private Limited </option>     
+                            <option value="Narayana Hrudayalaya Private Limited ">    Narayana Hrudayalaya Private Limited      </option>
+                            <option value="Navachethana Hospital A Unit Of Pan Asia Hospitals">    Navachethana Hospital A Unit Of Pan Asia Hospitals </option>    
+                            <option value="New Janapriya Super Specialty Hospital ">    New Janapriya Super Specialty Hospital      </option>
+                            <option value="New Varalakshmi Hospital">   New Varalakshmi Hospital      </option>
+                            <option value="Nu Hospitals Pvt Ltd  ">     Nu Hospitals Pvt Ltd     </option>
+                            <option value=" P D HINDUJA SINDHI HOSPITAL  ">      P D HINDUJA SINDHI HOSPITAL    </option>
+                            <option value="PAN Nagarbhavi Hospitals Pvt Ltd ">       PAN Nagarbhavi Hospitals Pvt Ltd   </option>
+                            <option value=" People Tree Hospitals">     People Tree Hospitals    </option>
+                            <option value=" PM Santosha Hospital   ">    PM Santosha Hospital     </option>
+                            <option value="Prakriya Hospitals A Unit Of C Square Healthcare">     Prakriya Hospitals A Unit Of C Square Healthcare</option>     
+                            <option value="Pristine Hospital And Research Centre Pvt Ltd">       Pristine Hospital And Research Centre Pvt Ltd</option>
+                            <option value=" Promed Hospital">     Promed Hospital       </option>
+                            <option value="Pulse Hospital Kurubarahalli">    Pulse Hospital Kurubarahalli    </option> 
+                            <option value=" Punya Hospitals India Pvt Ltd ">     Punya Hospitals India Pvt Ltd     </option>
+                            <option value="Radhakrishna Multispeciality Hospital Ivf Center">     Radhakrishna Multispeciality Hospital Ivf Center</option>     
+                            <option value="Rainbow Childrens Medicare Private Limited">    Rainbow Childrens Medicare Private Limited     </option>
+                            <option value="Rajmahal Vilas Hospital A Unit Of Anjan Nursing Home">    Rajmahal Vilas Hospital A Unit Of Anjan Nursing Home    </option> 
+                            <option value="Rajshekar Multi Speciality Hospital Pvt Ltd">    Rajshekar Multi Speciality Hospital Pvt Ltd     </option>
+                            <option value="Raksha Multispeciality Hospital">     Raksha Multispeciality Hospital     </option>
+                            <option value="Ramaiah Harsha Hospital">      Ramaiah Harsha Hospital    </option>
+                            <option value="Rangadore Hospital">     Rangadore Hospital    </option>
+                            <option value="Rescue Hospital A Unit Of Ratkal Speciality Hospital"> Rescue Hospital A Unit Of Ratkal Speciality Hospital</option>     
+                            <option value=" REPUBLIC HOSPITAL">     REPUBLIC HOSPITAL        </option>
+                            <option value=" Sagar Hospitals  ">   Sagar Hospitals      </option>
+                            <option value="Sai Ambica Hospital">  Sai Ambica Hospital       </option>
+                            <option value="Sakra Hospital">   Sakra Hospital      </option>
+                            <option value="Sanjeevini Hospital">   Sanjeevini Hospital      </option>
+                            <option value="Santosh Hospital">   Santosh Hospital      </option>
+                            <option value="Saralaya Hospitals Pvt Ltd">   Saralaya Hospitals Pvt Ltd     </option>  
+                            <option value="Sathya Sai Orthopadic And Multispeciality Hospital">    Sathya Sai Orthopadic And Multispeciality Hospital</option>       
+                            <option value="Sevakshetra Hospital">    Sevakshetra Hospital     </option>
+                            <option value="Shankar Super Speciality Hospital">   Shankar Super Speciality Hospital  </option>    
+                            <option value="SHETTYS HOSPITAL">  SHETTYS HOSPITAL       </option>
+                            <option value="SHIFAA HOSPITAL">  SHIFAA HOSPITAL       </option>
+                            <option value="Shushrusha Hospital Yelahanka">   Shushrusha Hospital Yelahanka </option>     
+                            <option value=" SI Vega Hospital Private Limited Regal Hospital">   SI Vega Hospital Private Limited Regal Hospital</option>      
+                            <option value="Sparsh Hospital For Advanced Surgeries ">   Sparsh Hospital For Advanced Surgeries      </option>
+                            <option value="Specialist Health System Pvt Limited">   Specialist Health System Pvt Limited      </option>
+                            <option value="Sree Lakshmi Hospital">   Sree Lakshmi Hospital      </option>
+                            <option value="Sree Lakshmi Multi Speciality Hospital">   Sree Lakshmi Multi Speciality Hospital</option>      
+                            <option value="SREE SAIPRASAD MULTISPECIALITY HOSPITAL">   SREE SAIPRASAD MULTISPECIALITY HOSPITAL      </option>
+                            <option value="Sreenivasa Hospital">   Sreenivasa Hospital      </option>
+                            <option value=" Sri Arogya Hospita">   Sri Arogya Hospital      </option>
+                            <option value="Sri Ashwini Hospital">    Sri Ashwini Hospital      </option>
+                            <option value="Sri Krishna Sevashrama Hospital">   Sri Krishna Sevashrama Hospital     </option> 
+                            <option value="Sri Lakshmi Multi Specialty Hospital">   Sri Lakshmi Multi Specialty Hospital      </option>
+                            <option value="Sri Lakshmi Super Speciality Hospital ">   Sri Lakshmi Super Speciality Hospital     </option>
+                            <option value=" Sri Sai Hospitals">   Sri Sai Hospitals      </option>
+                            <option value="Sri Sai Ram Hospital">   Sri Sai Ram Hospital      </option>
+                            <option value="Srinivasa Hospital">    Srinivasa Hospital      </option>
+                            <option value="Srinivasam Cancer Care Multi Speciality Hospital">  Srinivasam Cancer Care Multi Speciality Hospital </option>      
+                            <option value="SSNMC Super Specialty Hospital ">  SSNMC Super Specialty Hospital       </option>
+                            <option value="ST MARTHAS Hospital">  ST MARTHAS Hospital       </option>
+                            <option value="St Philomenas Hospital">  St Philomenas Hospital       </option>
+                            <option value="ST THERESAS HOSPITAL">  ST THERESAS HOSPITAL       </option>
+                            <option value="Suguna Hospital Bangalore">  Suguna Hospital Bangalore       </option>
+                            <option value="Swasa Hospital">  Swasa Hospital       </option>
+                            <option value="The Bangalore Hospital">  The Bangalore Hospital       </option>
+                            <option value="Trinity Hospital And Heart Foundation">  Trinity Hospital And Heart Foundation </option>      
+                            <option value="TRUSTWELL HOSPITALS PRIVATE LIMITED">  TRUSTWELL HOSPITALS PRIVATE LIMITED       </option>
+                            <option value="Unity Lifeline Hospital India Pvt Ltd">  Unity Lifeline Hospital India Pvt Ltd       </option>
+                            <option value="V CARE MEDISCON HOSPITAL"> V CARE MEDISCON HOSPITAL       </option>
+                            <option value="Vagus Super Speciality Hospital">  Vagus Super Speciality Hospital    </option>
+                            <option value="Varthur Silicon City Hospital Pvt Ltd LLP">  Varthur Silicon City Hospital Pvt Ltd LLP   </option> 
+                            <option value="Vasavi Hospital ">   Vasavi Hospital   </option>
+                            <option value="Vijayanagar Hospital">   Vijayanagar Hospital    </option>
+                            <option value="Vikram Hospital Bengaluru Private Limited">  Vikram Hospital Bengaluru Private Limited</option>    
+                            <option value=" Vimalalaya Hospital A Unit Of Vimalalaya Hospital ">  Vimalalaya Hospital A Unit Of Vimalalaya Hospital  </option>  
+                            <option value="Vinayaka Hospital">  Vinayaka Hospital</option>
+
+                        
+                                    
+                        <optgroup name="pri" label="Private Medical Colleges (Government Quota Covid Beds) "></optgroup>
+                            <option value="Akash Hospital">Akash Hospital</option>
+                            <option value="BGS Global Institute Of Medical Science And Hospital">BGS Global Institute Of Medical Science And Hospital</option>
+                            <option value="Dr B R Ambedkar Medical College">Dr B R Ambedkar Medical College</option>
+                            <option value="East Point Hospital">East Point Hospital</option>
+                            <option value="KIMS Hospital And Research Center">KIMS Hospital And Research Center</option>
+                            <option value="M S Ramaiah Hospital">M S Ramaiah Hospital</option>
+                            <option value="MVJ Medical College And Research Hospital">MVJ Medical College And Research Hospital</option>
+                            <option value="Rajarajeswari Medicalcollege And Hospital">Rajarajeswari Medicalcollege And Hospital</option>
+                            <option value="Sapthagiri Super Speciality Hospital">Sapthagiri Super Speciality Hospital</option>
+                            <option value="St Johns Medical College Hospital">St Johns Medical College Hospital</option>
+                            <option value="The Oxford Medical College Hospital And Research Center">The Oxford Medical College Hospital And Research Center</option>
+                            <option value="Vydehi Hospital">Vydehi Hospital</option>
+
+                </select>
+                </div>
+                Bed Allotted BY:
+                <div class="form-group">
+                    <input class="form-control" type="text" name="names" value="<%= currentUser.username %>" placeholder="Bed Allotted BY" >
+                </div>
+
+                <div class="form-group">
+                    <label for="bed">Type of bed Allotted:</label>
+                        <select class="form-control" id="bed" name="bed" required>
+                            <option value="one">ICU with ventilators</option>
+                            <option value="two">ICU without ventilators</option>
+                            <option value="General Hospital Anekal">HDU beds</option>
+                            <option value="four">Normal beds</option>
+                        </select>
+                 </div>
+                 <div class="form-group">
+                    <button>Submit!!</button>
+                </div>
+            </form>
+
+           
+    </div>
+</body>
+</ht
